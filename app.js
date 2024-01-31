@@ -1,37 +1,56 @@
 const express = require('express')
 const app = express()
-
 const PORT = process.env.PORT || "3000"
+const facts = require("./facts.json")
 
-app.set('view engine', 'ejs')
+app.set("view engine", "ejs")
+
 
 app.listen(PORT, ()=> {
-    console.log( `App is running on http://localhost:${PORT}...`)
+    console.log(`App is running on http://localhost:${PORT}...`)
 })
 
 app.get("/", (req, res) => {
-
-    res.send("Good Job!")
-
+    res.send("Options: /greet, /math, /pandorasbox")
 })
 
-// http://localhost:3000/greet?name=kaylee&dob=2002
-app.get('/greet', (req, res)=> {
+//http://localhost:3000/greet?name=sean&dob=2002
+app.get("/greet", (req, res) => {
+    const year = Number(req.query.year)
+    const age = 2024 - year
     console.log(req.query)
-
-    res.send(`hey, ${req.query.name}`)
+    res.send(`Hello, ${req.query.name}! You are ${age - 1} or ${age} years old.`)
 })
 
-app.get('/math/:num1/:op/:num2', (req, res)=> {
-    console.log( req.params )
-    res.send(`${req.params.num1}`)
+app.get("/math/:num1/:op/:num2", (req, res) => {
+    console.log(req.params)
+    const num1 = Number(req.params.num1)
+    const num2 = Number(req.params.num2)
+    const op = req.params.op
+    if (op == "times") {
+        res.send(`${num1 * num2}`)
+    }
+    else if (op == "dividedby") {
+        res.send(`${num1 / num2}`)
+    }
+    else if (op == "plus") {
+        res.send(`${num1 + num2}`)
+    }
+    else if (op == "minus") {
+        res.send(`${num1 - num2}`)
+    }
+    else if (op == "tothepowerof") {
+        res.send(`${num1 ** num2}`)
+    }
+    else {
+        res.send("Not a valid operation")
+    }
 })
 
-app.get('/pandorasbox', (req, res)=> {
-
-    // do the work
-    const message = "DAD JOKE"
-
-    res.render('pandorasbox', {title: "Pandora's Box", message} )
+app.get("/pandorasbox", (req, res) => {
+    const length = facts.length
+    const random = Math.floor(Math.random() * length)
+    const fact1 = facts[random].fact
+    res.render('pandorasbox', {title: "Pandora's Box", fact1})
 
 })
