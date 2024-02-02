@@ -3,6 +3,8 @@ const app = express()
 const PORT = process.env.PORT || "3000"
 const facts = require("./facts.json")
 
+app.use(express.static('public'))
+
 app.set("view engine", "ejs")
 
 
@@ -17,9 +19,10 @@ app.get("/", (req, res) => {
 //http://localhost:3000/greet?name=sean&dob=2002
 app.get("/greet", (req, res) => {
     const year = Number(req.query.year)
-    const age = 2024 - year
+    const age1 = 2024 - year - 1
+    const age2 = 2024 - year
     console.log(req.query)
-    res.send(`Hello, ${req.query.name}! You are ${age - 1} or ${age} years old.`)
+    res.render('greet', {title: "Greet", name: req.query.name, age1: age1, age2: age2})
 })
 
 app.get("/math/:num1/:op/:num2", (req, res) => {
@@ -28,22 +31,28 @@ app.get("/math/:num1/:op/:num2", (req, res) => {
     const num2 = Number(req.params.num2)
     const op = req.params.op
     if (op == "times") {
-        res.send(`${num1 * num2}`)
+        // res.send(`${num1 * num2}`)
+        res.render('math', {title: "Math", answer: num1 * num2})
     }
     else if (op == "dividedby") {
-        res.send(`${num1 / num2}`)
+        // res.send(`${num1 / num2}`)
+        res.render('math', {title: "Math", answer: num1 / num2})
     }
     else if (op == "plus") {
-        res.send(`${num1 + num2}`)
+        // res.send(`${num1 + num2}`)
+        res.render('math', {title: "Math", answer: num1 + num2})
     }
     else if (op == "minus") {
-        res.send(`${num1 - num2}`)
+        // res.send(`${num1 - num2}`)
+        res.render('math', {title: "Math", answer: num1 - num2})
     }
     else if (op == "tothepowerof") {
-        res.send(`${num1 ** num2}`)
+        // res.send(`${num1 ** num2}`)
+        res.render('math', {title: "Math", answer: num1 ** num2})
     }
     else {
-        res.send("Not a valid operation")
+        // res.send("Not a valid operation")
+        res.render('math', {title: "Math", answer: "Not a valid operation"})
     }
 })
 
