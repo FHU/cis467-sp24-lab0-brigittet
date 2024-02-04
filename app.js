@@ -27,28 +27,30 @@ app.get("/greet", (req, res) => {
 
 app.get("/math/:num1/:op/:num2", (req, res) => {
     console.log(req.params)
-    const num1 = Number(req.params.num1)
-    const num2 = Number(req.params.num2)
+    // const num1 = Number(req.params.num1)
+    // const num2 = Number(req.params.num2)
+    const num1 = parseInt(req.params.num1)
+    const num2 = parseInt(req.params.num2)
     const op = req.params.op
     if (op == "times") {
         // res.send(`${num1 * num2}`)
-        res.render('math', {title: "Math", answer: num1 * num2})
+        res.render('math', {title: "Math", sign: "*", num1: num1, num2: num2, answer: num1 * num2})
     }
     else if (op == "dividedby") {
         // res.send(`${num1 / num2}`)
-        res.render('math', {title: "Math", answer: num1 / num2})
+        res.render('math', {title: "Math", sign: "/", num1: num1, num2: num2, answer: num1 / num2})
     }
     else if (op == "plus") {
         // res.send(`${num1 + num2}`)
-        res.render('math', {title: "Math", answer: num1 + num2})
+        res.render('math', {title: "Math", sign: "+", num1: num1, num2: num2, answer: num1 + num2})
     }
     else if (op == "minus") {
         // res.send(`${num1 - num2}`)
-        res.render('math', {title: "Math", answer: num1 - num2})
+        res.render('math', {title: "Math", sign: "-", num1: num1, num2: num2, answer: num1 - num2})
     }
     else if (op == "tothepowerof") {
         // res.send(`${num1 ** num2}`)
-        res.render('math', {title: "Math", answer: num1 ** num2})
+        res.render('math', {title: "Math", sign: "^", num1: num1, num2: num2, answer: num1 ** num2})
     }
     else {
         // res.send("Not a valid operation")

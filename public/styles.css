@@ -1,16 +1,50 @@
+/* index.html */
+
+.index {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2rem;
+}
+
 /* pandora's box */
 
 .pandora {
     color: cadetblue;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2rem;
 }
-
-.pandora h1 {
-    font-family: Arial, Helvetica, sans-serif;
-}
-
 
 /* math */
 
+.math {
+    color: darkblue;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2rem;
+}
 
+.ans {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    border-style: solid;
+    border-width: 2px;
+    border-color: black;
+}
 
 /* greet */
+
+.greet {
+    color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    height: 100vh;
+    justify-content: center;
+}
