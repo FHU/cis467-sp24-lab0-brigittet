@@ -54,7 +54,7 @@ app.get("/math/:num1/:op/:num2", (req, res) => {
     }
     else {
         // res.send("Not a valid operation")
-        res.render('math', {title: "Math", answer: "Not a valid operation"})
+        res.render('math', {title: "Math", sign: "", num1: "", num2: "", answer: "Not a valid operation"})
     }
 })
 
